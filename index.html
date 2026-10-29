@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DiagnosTechnology — Clinical Workspace</title>
+  <meta name="description" content="Interface prototype for the DiagnosTechnology modular AI clinical decision-support platform: 8 AI platforms, 50 indications.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    // apply the saved theme before first paint to avoid a flash
+    (function () {
+      var q = (location.search.match(/[?&]theme=(light|dark)/) || [])[1];
+      var t = q || null; if (!t) { try { t = localStorage.getItem("dt-theme"); } catch (e) {} }
+      if (!t || t === "system") t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#/overview"><img src="assets/logo.png" alt=""><b>Diagnos<span>Technology</span></b></a>
+      <nav class="nav" id="nav"></nav>
+      <div class="sidebar-foot"><strong>Imam Reza Teaching Hospital</strong>Demo workspace · synthetic data</div>
+    </aside>
+    <div>
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <label class="search"><span class="sr-only">Search patients and cases</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="search" type="search" placeholder="Search patients, case IDs or indications">
+        </label>
+        <div class="spacer"></div>
+        <button class="icon-btn" id="themeBtn" aria-label="Switch to dark theme"></button>
+        <div class="who"><div class="avatar" aria-hidden="true">NK</div><span>Dr. Nasrin Karimi<br><small class="muted">Neurology</small></span></div>
+      </header>
+      <p class="demo-banner" role="note">Interface prototype. Patients, cases and results are synthetic. The platform is not cleared for clinical use; every AI output must be reviewed by a physician.</p>
+      <main id="view" tabindex="-1"></main>
+    </div>
+  </div>
+  <aside class="drawer" id="drawer" aria-label="Indication details" aria-hidden="true"></aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
